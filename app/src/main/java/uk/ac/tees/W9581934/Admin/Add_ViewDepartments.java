@@ -1,4 +1,4 @@
-package uk.ac.tees.W9581934.Patient;
+package uk.ac.tees.W9581934.Admin;
 
 import android.os.Bundle;
 
@@ -12,11 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import uk.ac.tees.W9581934.R;
-import uk.ac.tees.W9581934.databinding.FragmentMyBookingsBinding;
-import uk.ac.tees.W9581934.databinding.FragmentUserBookingBinding;
 
-public class UserBookingFragment extends Fragment {
-    FragmentUserBookingBinding binding;
+
+public class Add_ViewDepartments extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +26,10 @@ public class UserBookingFragment extends Fragment {
         });
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding= FragmentUserBookingBinding.inflate(getLayoutInflater(),container,false);
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_add__view_departments, container, false);
     }
 }

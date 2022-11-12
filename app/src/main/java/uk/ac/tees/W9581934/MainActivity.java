@@ -13,9 +13,11 @@ import org.jetbrains.annotations.Nullable;
 
 public final class MainActivity extends AppCompatActivity {
 
-
+ActivityMainBinding binding;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
     }
 }

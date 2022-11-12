@@ -1,66 +1,125 @@
 package uk.ac.tees.W9581934.Patient;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavGraph;
+import androidx.navigation.NavInflater;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+
+import java.util.zip.Inflater;
 
 import uk.ac.tees.W9581934.R;
+import uk.ac.tees.W9581934.databinding.FragmentUserHomeBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserHomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class UserHomeFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public UserHomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserHomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UserHomeFragment newInstance(String param1, String param2) {
-        UserHomeFragment fragment = new UserHomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+FragmentUserHomeBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_home, container, false);
+        binding=FragmentUserHomeBinding.inflate(getLayoutInflater(),container,false);
+        return binding.getRoot();
     }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requireActivity().getOnBackPressedDispatcher().addCallback( this,new OnBackPressedCallback(true){
+            @Override
+            public void handleOnBackPressed() {
+                Log.d("@@", "handleOnBackPressed: click");
+                AlertDialog.Builder alertbox=new AlertDialog.Builder(requireContext());
+                alertbox.setMessage("Do you really wants to logout from this app?");
+                alertbox.setTitle("Logout!!");
+
+                alertbox.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Navigation.findNavController(getView()).navigateUp();
+
+                    }
+                });
+                alertbox.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                alertbox.show();
+
+
+            }
+        });
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        NavHostFragment NavHostFragment=binding.HomeContainer.getFragment();
+        NavInflater inflater=NavHostFragment.getNavController().getNavInflater();
+        binding.iconDr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavGraph graph=inflater.inflate(R.navigation.homenav);
+                graph.setStartDestination(R.id.userBookingFragment);
+                NavHostFragment.getNavController().setGraph(graph);
+
+            }
+        });
+        binding.iconChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavGraph graph=inflater.inflate(R.navigation.homenav);
+                graph.setStartDestination(R.id.dashboardFragment);
+                NavHostFragment.getNavController().setGraph(graph);
+
+            }
+        });
+        binding.iconHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavGraph graph=inflater.inflate(R.navigation.homenav);
+                graph.setStartDestination(R.id.dashboardFragment);
+                NavHostFragment.getNavController().setGraph(graph);
+
+            }
+        });
+        binding.iconBookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavGraph graph=inflater.inflate(R.navigation.homenav);
+                graph.setStartDestination(R.id.myBookingsFragment);
+                NavHostFragment.getNavController().setGraph(graph);
+
+            }
+        });
+        binding.iconFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                NavGraph graph=inflater.inflate(R.navigation.homenav);
+                graph.setStartDestination(R.id.userFeedbackFragment);
+                NavHostFragment.getNavController().setGraph(graph);
+            }
+        });
+
+    }
+
 }
