@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import uk.ac.tees.W9581934.R;
+import uk.ac.tees.W9581934.databinding.FragmentBookingListBinding;
 
 public class BookingListFragment extends Fragment {
+    FragmentBookingListBinding binding;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class BookingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booking_list, container, false);
+        binding = FragmentBookingListBinding.inflate(getLayoutInflater(), container, false);
+                return binding.getRoot();
     }
 }

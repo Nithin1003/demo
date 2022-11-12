@@ -4,17 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white_down"
+    android:background="@color/peak"
     tools:context=".Patient.UserHomeFragment">
-
+<androidx.appcompat.widget.AppCompatImageView
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:id="@+id/ivlogout"
+    android:src="@drawable/logout"
+    android:padding="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="10dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/HomeContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/white_down"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/homenav"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivlogout"
         app:layout_constraintBottom_toTopOf="@id/bottomSheet"
         />
 

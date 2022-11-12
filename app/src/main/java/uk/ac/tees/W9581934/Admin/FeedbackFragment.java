@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import uk.ac.tees.W9581934.R;
+import uk.ac.tees.W9581934.databinding.FragmentBookingListBinding;
+import uk.ac.tees.W9581934.databinding.FragmentFeedbackBinding;
 
 public class FeedbackFragment extends Fragment {
+    FragmentFeedbackBinding binding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class FeedbackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feedback, container, false);
+        binding = FragmentFeedbackBinding.inflate(getLayoutInflater(), container, false);
+        return binding.getRoot();
     }
 }

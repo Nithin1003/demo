@@ -26,4 +26,9 @@
         android:name="uk.ac.tees.W9581934.Patient.UserFeedbackFragment"
         android:label="fragment_user_feedback"
         tools:layout="@layout/fragment_user_feedback" />
+    <fragment
+        android:id="@+id/chatWithdoctor"
+        android:name="uk.ac.tees.W9581934.Patient.ChatWithdoctor"
+        android:label="fragment_chat_withdoctor"
+        tools:layout="@layout/fragment_chat_withdoctor" />
 </navigation>

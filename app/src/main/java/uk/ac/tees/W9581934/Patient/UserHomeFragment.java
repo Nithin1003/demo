@@ -74,6 +74,31 @@ FragmentUserHomeBinding binding;
         super.onViewCreated(view, savedInstanceState);
         NavHostFragment NavHostFragment=binding.HomeContainer.getFragment();
         NavInflater inflater=NavHostFragment.getNavController().getNavInflater();
+        binding.ivlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertbox=new AlertDialog.Builder(requireContext());
+                alertbox.setMessage("Do you really wants to logout from this app?");
+                alertbox.setTitle("Logout!!");
+
+                alertbox.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Navigation.findNavController(getView()).navigateUp();
+
+                    }
+                });
+                alertbox.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                alertbox.show();
+            }
+        });
         binding.iconDr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +112,7 @@ FragmentUserHomeBinding binding;
             @Override
             public void onClick(View view) {
                 NavGraph graph=inflater.inflate(R.navigation.homenav);
-                graph.setStartDestination(R.id.dashboardFragment);
+                graph.setStartDestination(R.id.chatWithdoctor);
                 NavHostFragment.getNavController().setGraph(graph);
 
             }
